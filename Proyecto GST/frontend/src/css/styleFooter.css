@@ -1,0 +1,9 @@
+.piePagina{
+    background-color: #d9eef3;
+    width: 100%;
+    height: 110px;
+    text-align: left;
+    padding: 5px;
+    border-radius: 20px;
+    position: absolute;
+}

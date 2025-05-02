@@ -1,0 +1,30 @@
+.imagenIA{
+    background-image: url('./img/imagenIA.webp');
+    height: 450px;
+    width: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.imagenCiberseguridad{
+    background-image: url('./img/ciberseguridad.jpg');
+    height: 450px;
+    width: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.imagenDesarrollo{
+    background-image: url('./img/desarrollo.jpg');
+    height: 370px;
+    width: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+li{
+    text-align: left;
+}

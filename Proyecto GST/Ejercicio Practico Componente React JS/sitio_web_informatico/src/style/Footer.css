@@ -1,0 +1,13 @@
+.divPadre{
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+}
+
+.footer-item {
+    margin-bottom: 10px;
+  }

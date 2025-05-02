@@ -1,0 +1,14 @@
+.tituloGst{
+    color: #48bfdd;
+    left: 20px;
+    margin-top: 0px;
+    position: auto;
+}
+
+.botones{
+    text-align: right;
+    position: absolute;
+    top: 12px;
+    left: 950px;
+    margin-right: 20px;
+}
