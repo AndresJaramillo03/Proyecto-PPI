@@ -1,22 +1,33 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import '../css/style.css';
-import { Card, Container} from 'react-bootstrap';
-import {Button, Modal, Form} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 
 export default function Forms() {
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
-    /*<div className='contenedor'>*/
-    <div className='relative'>
+    <div className="relative">
+      <Container className="text-center py-5">
 
-      <button className='agregarFormulario' onClick={handleShow}>Crear nuevo formulario</button>
+        <h2 className="mb-4 text-white">Bienestar Emocional en el Trabajo</h2>
 
-      <Modal show = {show} onHide={handleClose}>
+        <div className="d-flex justify-content-center gap-3">
+          <button className="btn btn-primary px-4" onClick={handleShow}>
+            Crear nuevo formulario
+          </button>
+
+          <button className="btn btn-outline-light px-4">
+            Ver último formulario
+          </button>
+        </div>
+
+      </Container>
+
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>FORMULARIO</Modal.Title>
         </Modal.Header>
@@ -74,18 +85,13 @@ export default function Forms() {
               <Form.Control type="text" placeholder="Ingresa la respuesta" />
             </Form.Group>
 
-          </Form>
+            </Form>
         </Modal.Body>
 
         <Modal.Footer>
-
           <Button>Enviar</Button>
-
         </Modal.Footer>
       </Modal>
-
-      <button className='verFormulario'>Ver ultimo formulario</button>
     </div>
-    /*</div>*/
-  )
+  );
 }

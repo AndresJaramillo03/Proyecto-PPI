@@ -1,20 +1,20 @@
-import React from 'react'
-import { useNavigate }  from 'react-router-dom';
-import '../css/styleHeader.css'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../css/styleHeader.css';
 
 export default function Header() {
   const navigate = useNavigate();
+  
   return (
-    <div className='navbar navbar-light bg-light"'>
-      <div className='tituloGst container-fluid'>
-        <h1>GST</h1>
-      </div>
-        <div className='botones'>
-          <button className='bg-white text-blue-600 px-4 py-2 rounded' onClick={() => navigate("/Home")}>Inicio</button>
-          <button className='bg-white text-blue-600 px-4 py-2 rounded' onClick={() => navigate("/Forms")}>Formulario</button>
-          <button className='bg-white text-blue-600 px-4 py-2 rounded' onClick={() => navigate("/Login")}>Registro</button>
+    <header className="navbar custom-navbar shadow-sm">
+      <div className="container d-flex justify-content-between align-items-center">
+        <h1 className="titulo-gst m-0">GST</h1>
+        <div className="botones">
+          <button onClick={() => navigate("/Home")}>Inicio</button>
+          <button onClick={() => navigate("/Forms")}>Formulario</button>
+          <button onClick={() => navigate("/Login")}>Registro</button>
         </div>
-      
-    </div>
-  )
+      </div>
+    </header>
+  );
 }
