@@ -1,33 +1,32 @@
-/* Fondo general con imagen difuminada o color suave */
 .home-background {
-    background: linear-gradient(to right, #74ebd5, #ACB6E5); /* Azul claro a lavanda */
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* Estilo para la tarjeta */
-  .custom-card {
-    max-width: 800px;
-    width: 90%;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #ffffff;
-    border: none;
-  }
+
+.custom-card {
+  max-width: 800px;
+  width: 90%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: none;
+}
   
-  /* Encabezado con color de acento */
-  .custom-header {
-    background-color: #4a90e2; /* Azul suave */
-    padding: 20px;
-    border-bottom: none;
-  }
+
+.custom-header {
+  background-color: #4a90e2;
+  padding: 20px;
+  border-bottom: none;
+}
   
-  /* Texto del cuerpo con buena legibilidad */
-  .custom-text {
-    font-size: 1.2rem;
-    color: #333333;
-    line-height: 1.6;
-    padding: 20px;
-  }  
+
+.custom-text {
+  font-size: 1.2rem;
+  color: #333333;
+  line-height: 1.6;
+  padding: 20px;
+}  
