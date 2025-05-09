@@ -1,40 +1,34 @@
 import React from 'react';
-import { Card, Container } from 'react-bootstrap';
+import fondoHome from '../assets/fondo-home.png'; // importa la imagen
+import '../css/loginForm.css';
 
 export default function Login() {
   return (
-    <div className='relative'>
-      <Container className="d-flex justify-content-center align-items-center min-vh-100">
-        <Card style={{ width: '100%', maxWidth: '400px' }} className="shadow-sm">
-          <Card.Header className="text-center bg-primary text-white">
-            <h5>Iniciar Sesión</h5>
-          </Card.Header>
-          <Card.Body>
-            <div className='contenedorIniciarSesion'>
-              <div className="mb-3">
-                <label htmlFor="usuario" className="form-label">Escriba su usuario</label>
-                <input
-                  type="text"
-                  id="usuario"
-                  name="usuario"
-                  className="form-control"
-                  placeholder="Escriba aquí"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="contraseña" className="form-label">Escriba su contraseña</label>
-                <input
-                  type="password"
-                  id="contraseña"
-                  name="contraseña"
-                  className="form-control"
-                  placeholder="Escriba aquí"
-                />
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
-      </Container>
+    <div
+      className="login‐wrapper"
+      style={{
+        backgroundImage: `url(${fondoHome})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div className="login-card text-center">
+        <h2 className="mb-4">INICIA SESIÓN</h2>
+        <input type="text" className="login-input mb-3" placeholder="Usuario" />
+        <input type="password" className="login-input mb-3" placeholder="Contraseña" />
+        <div className="form-check text-start mb-3">
+          <input className="form-check-input" type="checkbox" id="recordar" checked readOnly />
+          <label className="form-check-label label" htmlFor="recordar">
+            Recordar
+          </label>
+        </div>
+        <button className="login-button">INICIAR</button>
+      </div>
     </div>
   );
 }

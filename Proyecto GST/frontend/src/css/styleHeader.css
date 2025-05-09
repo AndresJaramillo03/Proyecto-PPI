@@ -1,38 +1,35 @@
+/* styleHeader.css */
+
 .custom-navbar {
-    background: linear-gradient(to right, #63b3ed, #4a90e2);
-    padding: 15px 0;
-  }
-  
-  .titulo-gst {
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-  }
-  
-  .botones button {
-    background-color: white;
-    color: #4a90e2;
-    border: none;
-    padding: 8px 16px;
-    margin-left: 10px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .botones button:hover {
-    background-color: #e6f2ff;
-    transform: scale(1.05);
-  }
-  
-  /* Para que sea Responsive */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .botones {
-      margin-top: 10px;
-    }
-  }  
+  background-color: white;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.titulo-gst {
+  font-size: 32px;
+  color: #4AC6D1;
+  font-weight: bold;
+}
+
+.botones button {
+  background: none;
+  border: none;
+  margin-left: 30px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.botones button:hover {
+  color: #4AC6D1;
+}
+
+.botones {
+  display: flex;
+  align-items: center;
+}

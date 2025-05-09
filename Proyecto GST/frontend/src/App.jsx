@@ -16,7 +16,6 @@ function App() {
         <Route path='/Login' element={<Login />}/>
         <Route path='/Forms' element={<Forms />}/>
       </Routes>
-      <Footer />
   </Router>
   )
 }
