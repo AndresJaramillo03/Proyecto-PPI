@@ -90,12 +90,12 @@ go
 
 create table preguntas(
 id_pregunta bigint primary key not null,
-como_te_has_sentido_emocionalmente_en_el_trabajo_durante_la_ultima_semana nvarchar(500) not null, --(Opciones: Muy bien / Bien / Neutral / Mal / Muy mal)
-te_sientes_motivado_para_realizar_tus_tareas_diarias nvarchar(500) not null, --(Escala de 1 a 5)
-Sientes_que_tu_trabajo_es_valorado_por_tus_superiores_o_compañeros nvarchar(500) not null,
-Has_sentido_estres_o_ansiedad_relacionados_con_el_trabajo_recientemente nvarchar(500) not null,
-Te_resulta_facil_concentrarte_en_tus_tareas_durante_la_jornada_laboral nvarchar(500) not null,
-Te_sientes_agotado_al_final_del_dia_laboral nvarchar(500) not null,
+Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar nvarchar(500) not null, --(Opciones: Muy bien / Bien / Neutral / Mal / Muy mal)
+Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral nvarchar(500) not null, --(Escala de 1 a 5)
+Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar nvarchar(500) not null,
+Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales nvarchar(500) not null,
+Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo nvarchar(500) not null,
+Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses nvarchar(500) not null,
 Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres nvarchar(500) not null,
 Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo nvarchar(500) not null,
 Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal nvarchar(500) not null,
@@ -257,6 +257,33 @@ INSERT INTO cargo_empleado_cliente (codigo_cargo, descripcion_cargo, funciones, 
 ('FNC01', 'Financiero Junior', 'Apoyo en gestión presupuestal', 'Finanzas');
 
 
+-- Inserciones para datos_empleado_cliente
+INSERT INTO datos_empleado_cliente (
+    documento_empleado, tipo_documento, nombre_1, nombre_2, apellido_1, apellido_2, 
+    telefono_1, telefono_2, codigo_cargo_fk, nit_cliente_fk
+) VALUES
+(2001, 'CC', 'Laura', 'Marcela', 'Gómez', 'Pérez', 3111234567, NULL, 'DEV01', 800100001),
+(2002, 'TI', 'Carlos', NULL, 'Ramírez', 'López', 3209876543, 3105554444, 'QA01', 800100001),
+(2003, 'CC', 'Andrea', 'Paola', 'Martínez', NULL, 3137894561, NULL, 'PM01', 800100002),
+(2004, 'CE', 'Juan', NULL, 'Torres', 'Ríos', 3102345678, 3188765432, 'UX01', 800100002),
+(2005, 'CC', 'Sofía', 'Alejandra', 'Hernández', 'Mejía', 3011122334, NULL, 'HR01', 800100003),
+(2006, 'TI', 'David', 'Esteban', 'Moreno', NULL, 3157788991, 3109998888, 'MK01', 800100003),
+(2007, 'CC', 'Camila', NULL, 'García', 'Zapata', 3004433221, NULL, 'ADM01', 800100004),
+(2008, 'CE', 'Luis', 'Felipe', 'Vargas', 'Montoya', 3115566778, NULL, 'SEG01', 800100004),
+(2009, 'TI', 'Daniela', NULL, 'Castro', 'Giraldo', 3102233445, 3019988776, 'CT01', 800100005),
+(2010, 'CC', 'Julián', 'Andrés', 'Sánchez', NULL, 3124567890, NULL, 'TI01', 800100005),
+(2011, 'CC', 'Valentina', 'Isabel', 'Rojas', 'Cardona', 3114433221, NULL, 'LP01', 800100001),
+(2012, 'TI', 'Sebastián', NULL, 'Cano', 'Rincón', 3126655443, 3145566778, 'DV01', 800100001),
+(2013, 'CE', 'Paula', 'Lucía', 'Quintero', NULL, 3002211344, NULL, 'DSN01', 800100002),
+(2014, 'CC', 'Mateo', NULL, 'López', 'Gutiérrez', 3109988776, NULL, 'JUR01', 800100002),
+(2015, 'TI', 'Isabela', 'Fernanda', 'Pineda', NULL, 3014433221, NULL, 'RD01', 800100003),
+(2016, 'CC', 'Tomás', 'Emilio', 'Restrepo', 'Zuluaga', 3123344556, 3134455667, 'VNT01', 800100003),
+(2017, 'CE', 'Manuela', NULL, 'Ortiz', 'Delgado', 3146677889, NULL, 'BCK01', 800100004),
+(2018, 'CC', 'Samuel', 'Alejandro', 'Mendoza', NULL, 3158899776, 3102211344, 'SRV01', 800100004),
+(2019, 'TI', 'Sara', NULL, 'Navarro', 'Ramírez', 3160011223, NULL, 'FNC01', 800100005),
+(2020, 'CE', 'Jorge', 'Iván', 'Cárdenas', NULL, 3171122334, NULL, 'DEV02', 800100005);
+
+
 INSERT INTO usuario (id_usuario, documento_usuario_fk, codigo_perfil_fk, correo, contraseña_usuario) VALUES (3001, 2001, 4, N'usuario1@correo.com', N'pass1segura');
 INSERT INTO usuario (id_usuario, documento_usuario_fk, codigo_perfil_fk, correo, contraseña_usuario) VALUES (3002, 2002, 4, N'usuario2@correo.com', N'pass2segura');
 INSERT INTO usuario (id_usuario, documento_usuario_fk, codigo_perfil_fk, correo, contraseña_usuario) VALUES (3003, 2003, 3, N'usuario3@correo.com', N'pass3segura');
@@ -301,28 +328,6 @@ INSERT INTO familia_empleado_cliente (documento_empleado_fk, parentesco, documen
 INSERT INTO familia_empleado_cliente (documento_empleado_fk, parentesco, documento_pariente, nombre1, nombre2, apellido1, apellido2) VALUES (2020, N'Abuela', 86743129, N'Josefina', N'Carmen', N'Núñez', N'Escobar');
 
 
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (1, 1, 3011);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (2, 2, 3012);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (3, 3, 3013);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (4, 4, 3014);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (5, 5, 3015);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (6, 6, 3016);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (7, 7, 3017);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (8, 8, 3018);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (9, 9, 3019);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (10, 10, 3020);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (11, 11, 3011);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (12, 12, 3012);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (13, 13, 3013);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (14, 14, 3014);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (15, 15, 3015);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (16, 16, 3016);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (17, 17, 3017);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (18, 18, 3018);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (19, 19, 3019);
-INSERT INTO formularios (id_formulario, id_pregunta, id_usuario_fk) VALUES (20, 20, 3020);
-
-
 INSERT INTO preguntas (
   id_pregunta,
   como_te_has_sentido_emocionalmente_en_el_trabajo_durante_la_ultima_semana,
@@ -357,25 +362,45 @@ INSERT INTO preguntas (
 (19, 'Neutral', '3', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Falta de liderazgo.'),
 (20, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Me siento valorado.');
 
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (1, 1, 3011);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (2, 2, 3012);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (3, 3, 3013);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (4, 4, 3014);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (5, 5, 3015);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (6, 6, 3016);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (7, 7, 3017);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (8, 8, 3018);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (9, 9, 3019);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (10, 10, 3020);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (11, 11, 3011);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (12, 12, 3012);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (13, 13, 3013);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (14, 14, 3014);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (15, 15, 3015);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (16, 16, 3016);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (17, 17, 3017);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (18, 18, 3018);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (19, 19, 3019);
+INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (20, 20, 3020);
 
 INSERT INTO sesiones (id_usuario_fk, token, fecha_expiracion) VALUES
-(1, 'token1', '2025-05-08 12:00:00'),
-(2, 'token2', '2025-05-08 12:00:00'),
-(3, 'token3', '2025-05-08 12:00:00'),
-(4, 'token4', '2025-05-08 12:00:00'),
-(5, 'token5', '2025-05-08 12:00:00'),
-(6, 'token6', '2025-05-08 12:00:00'),
-(7, 'token7', '2025-05-08 12:00:00'),
-(8, 'token8', '2025-05-08 12:00:00'),
-(9, 'token9', '2025-05-08 12:00:00'),
-(10, 'token10', '2025-05-08 12:00:00'),
-(11, 'token11', '2025-05-08 12:00:00'),
-(12, 'token12', '2025-05-08 12:00:00'),
-(13, 'token13', '2025-05-08 12:00:00'),
-(14, 'token14', '2025-05-08 12:00:00'),
-(15, 'token15', '2025-05-08 12:00:00'),
-(16, 'token16', '2025-05-08 12:00:00'),
-(17, 'token17', '2025-05-08 12:00:00'),
-(18, 'token18', '2025-05-08 12:00:00'),
-(19, 'token19', '2025-05-08 12:00:00'),
-(20, 'token20', '2025-05-08 12:00:00');
+(3001, 'token1', '2025-05-08 12:00:00'),
+(3002, 'token2', '2025-05-08 12:00:00'),
+(3003, 'token3', '2025-05-08 12:00:00'),
+(3004, 'token4', '2025-05-08 12:00:00'),
+(3005, 'token5', '2025-05-08 12:00:00'),
+(3006, 'token6', '2025-05-08 12:00:00'),
+(3007, 'token7', '2025-05-08 12:00:00'),
+(3008, 'token8', '2025-05-08 12:00:00'),
+(3009, 'token9', '2025-05-08 12:00:00'),
+(3010, 'token10', '2025-05-08 12:00:00'),
+(3011, 'token11', '2025-05-08 12:00:00'),
+(3012, 'token12', '2025-05-08 12:00:00'),
+(3013, 'token13', '2025-05-08 12:00:00'),
+(3014, 'token14', '2025-05-08 12:00:00'),
+(3015, 'token15', '2025-05-08 12:00:00'),
+(3016, 'token16', '2025-05-08 12:00:00'),
+(3017, 'token17', '2025-05-08 12:00:00'),
+(3018, 'token18', '2025-05-08 12:00:00'),
+(3019, 'token19', '2025-05-08 12:00:00'),
+(3020, 'token20', '2025-05-08 12:00:00');
