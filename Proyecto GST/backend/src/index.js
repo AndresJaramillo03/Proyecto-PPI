@@ -13,5 +13,5 @@ app.use(router)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`conectados al puerto: ${process.env.PORT}`)
-    getConnection
+    getConnection;
 })

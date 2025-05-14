@@ -1,79 +1,51 @@
-import React, { useState } from 'react';
-import '../css/loginForm.css';
-import fondoHome from '../assets/fondo-home.png';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import fondoHome from "../assets/fondo-home.png";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 export default function Forms() {
-
-//Aqui
-
-  // Estado para cada respuesta
-  const [responses, setResponses] = useState({
-    pregunta1: '',
-    pregunta2: '',
-    pregunta3: '',
-    pregunta4: '',
-    pregunta5: '',
-    pregunta6: '',
+  const [respuestas, setRespuestas] = useState({
+    r1: "",
+    r2: "",
+    r3: "",
+    r4: "",
+    r5: "",
+    r6: "",
   });
 
-  const [lastForm, setLastForm] = useState(null);
-  const [message, setMessage] = useState('');
-  const apiUrl = 'http://localhost:3000/formularios'; // ajusta si tu ruta es distinta
-
-  // Maneja cambio en inputs
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { id, value } = e.target;
-    setResponses(prev => ({ ...prev, [id]: value }));
+    setRespuestas({ ...respuestas, [id]: value });
   };
 
-  // Enviar form completo
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage('Guardando...');
+
     try {
-      // Prepara payload de preguntas y usuario (aquí 123 es ejemplo de id_usuario)
-      const payload = {
-        // si tu backend espera un objeto "respuestas", ajústalo
-        respuestas: responses,
-        id_usuario_fk: 123
-      };
-      const res = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      // Paso 1: Insertar en la tabla "preguntas"
+      const preguntasResponse = await axios.post("http://localhost:3000/preguntas", {
+        ...respuestas,
+        r7: "Bien",
+        r8: "Bien",
+        r9: "Bien",
+        r10: "Ninguno",
       });
-      const body = await res.json();
-      if (res.ok) {
-        setMessage('Formulario enviado correctamente');
-        setResponses({ pregunta1: '', pregunta2: '', pregunta3: '', pregunta4: '', pregunta5: '', pregunta6: '' });
-      } else {
-        setMessage(body.message || 'Error al enviar');
-      }
-    } catch (err) {
-      setMessage('Fallo de red al enviar');
+
+      const id_pregunta_fk = preguntasResponse.data.id_pregunta;
+
+      // Paso 2: Insertar en la tabla "formularios"
+      const formularioResponse = await axios.post("http://localhost:3000/formularios", {
+        id_pregunta_fk,
+        id_usuario_fk: 1, // Aquí va el id del usuario que está llenando el formulario
+      });
+
+      alert("Formulario enviado con éxito");
+
+    } catch (error) {
+      console.error(error);
+      alert("Error al enviar el formulario.");
     }
   };
-
-  // Obtener último formulario
-  const handleViewLast = async () => {
-    setMessage('Cargando último formulario...');
-    try {
-      const res = await fetch(apiUrl);
-      const data = await res.json();
-      if (Array.isArray(data) && data.length) {
-        const last = data[data.length - 1];
-        setLastForm(last);
-        setMessage('Último formulario cargado');
-      } else {
-        setMessage('No hay formularios');
-      }
-    } catch {
-      setMessage('Error al cargar');
-    }
-  };
-
-//
 
   return (
     <div
@@ -82,67 +54,66 @@ export default function Forms() {
     >
       <div className="form-card">
         <h2 className="text-center">FORMULARIO</h2>
-
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row className="gy-4">
             <Col md={6}>
-              <Form.Group controlId="pregunta1">
+              <Form.Group controlId="r1">
                 <Form.Label>
                   ¿Sientes que las demandas de tu trabajo son excesivas o difíciles de manejar?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r1} onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={6}>
-              <Form.Group controlId="pregunta2">
+              <Form.Group controlId="r2">
                 <Form.Label>
                   ¿Te resulta difícil desconectar del trabajo fuera del horario laboral?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r2} onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={6}>
-              <Form.Group controlId="pregunta3">
+              <Form.Group controlId="r3">
                 <Form.Label>
                   ¿Experimentas fatiga o agotamiento, incluso después de descansar?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r3} onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={6}>
-              <Form.Group controlId="pregunta4">
+              <Form.Group controlId="r4">
                 <Form.Label>
                   ¿Sientes que no tienes suficiente control sobre tus tareas o decisiones laborales?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r4} onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={6}>
-              <Form.Group controlId="pregunta5">
+              <Form.Group controlId="r5">
                 <Form.Label>
                   ¿Te resulta difícil cumplir con los plazos y objetivos de trabajo?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r5} onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={6}>
-              <Form.Group controlId="pregunta6">
+              <Form.Group controlId="r6">
                 <Form.Label>
                   ¿Sientes que tu carga de trabajo ha aumentado significativamente en los últimos meses?
                 </Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu respuesta" />
+                <Form.Control type="text" value={respuestas.r6} onChange={handleChange} />
               </Form.Group>
             </Col>
           </Row>
 
-          <div className="form-actions">
-            <Button variant="info">Enviar</Button>
-            <Button variant="outline-secondary">Ver último formulario</Button>
+          <div className="form-actions mt-4 d-flex justify-content-between">
+            <Button variant="info" type="submit">Enviar</Button>
+            <Button variant="outline-secondary" type="button">Ver último formulario</Button>
           </div>
         </Form>
       </div>
