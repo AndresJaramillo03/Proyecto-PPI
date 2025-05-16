@@ -22,7 +22,7 @@ export default function Forms() {
     e.preventDefault();
 
     try {
-      // Paso 1: Insertar en la tabla "preguntas"
+
       const preguntasResponse = await axios.post("http://localhost:3000/preguntas", {
         ...respuestas,
         r7: "Bien",
@@ -33,10 +33,10 @@ export default function Forms() {
 
       const id_pregunta_fk = preguntasResponse.data.id_pregunta;
 
-      // Paso 2: Insertar en la tabla "formularios"
+
       const formularioResponse = await axios.post("http://localhost:3000/formularios", {
         id_pregunta_fk,
-        id_usuario_fk: 1, // Aquí va el id del usuario que está llenando el formulario
+        id_usuario_fk: 1,
       });
 
       alert("Formulario enviado con éxito");

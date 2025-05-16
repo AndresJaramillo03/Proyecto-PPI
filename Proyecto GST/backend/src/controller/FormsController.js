@@ -39,7 +39,7 @@ const postF = async (req, res) => {
     }
 
 } catch (error) {
-  console.error("Error en postF:", error); // 👈 Agrega esto
+  console.error("Error en postF:", error);
   res.status(500).json({ message: error.message });
 }
 };

@@ -21,7 +21,6 @@ const createFormularioCompleto = async (data) => {
 
 const pool = await getConnection;
 
-  // 1. Insertar en preguntas
   const resultPreguntas = await pool.request()
     .input("r1", sql.NVarChar, r1)
     .input("r2", sql.NVarChar, r2)
@@ -54,10 +53,9 @@ const pool = await getConnection;
 
   if (resultPreguntas.rowsAffected[0] !== 1) return false;
 
-  // 2. Obtener el id_pregunta recién insertado
+
   const id_pregunta_fk = (await pool.request().query(`SELECT MAX(id_pregunta) as id FROM preguntas`)).recordset[0].id;
 
-  // 3. Insertar en formularios
   const resultFormulario = await pool.request()
     .input("id_pregunta_fk", sql.BigInt, id_pregunta_fk)
     .input("id_usuario_fk", sql.BigInt, id_usuario_fk)

@@ -1,5 +1,5 @@
 import React from 'react';
-import fondoHome from '../assets/fondo-home.png'; // importa la imagen
+import fondoHome from '../assets/fondo-home.png';
 import '../css/loginForm.css';
 
 export default function Login() {
