@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const api = 'https:localhost:3000/Litar'
+const api = 'http://localhost:3000/SeeFrom'
 
-export const ObtenerFormularios = async()=>{
+export const ObtenerFormulario = async()=>{
     const listado = await axios.get(api)
     return listado.data
 }

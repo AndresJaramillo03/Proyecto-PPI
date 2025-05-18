@@ -404,3 +404,51 @@ INSERT INTO sesiones (id_usuario_fk, token, fecha_expiracion) VALUES
 (3018, 'token18', '2025-05-08 12:00:00'),
 (3019, 'token19', '2025-05-08 12:00:00'),
 (3020, 'token20', '2025-05-08 12:00:00');
+
+
+
+
+----------------------PROCEDIMIENTO PARA INSERTAR EN PPI----------------------
+
+CREATE PROCEDURE sp_InsertarPregunta
+    @id_pregunta BIGINT,
+    @Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar NVARCHAR(500),
+    @Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral NVARCHAR(500),
+    @Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar NVARCHAR(500),
+    @Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales NVARCHAR(500),
+    @Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo NVARCHAR(500),
+    @Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses NVARCHAR(500),
+    @Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres NVARCHAR(500),
+    @Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo NVARCHAR(500),
+    @Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal NVARCHAR(500),
+    @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral NVARCHAR(500)
+AS
+BEGIN
+
+    INSERT INTO preguntas (
+        id_pregunta,
+        Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
+        Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
+        Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
+        Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales,
+        Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo,
+        Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses,
+        Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres,
+        Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo,
+        Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal,
+        Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
+    )
+    VALUES (
+        @id_pregunta,
+        @Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
+        @Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
+        @Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
+        @Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales,
+        @Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo,
+        @Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses,
+        @Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres,
+        @Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo,
+        @Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal,
+        @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
+    );
+END;

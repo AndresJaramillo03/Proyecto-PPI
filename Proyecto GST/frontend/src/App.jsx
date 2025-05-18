@@ -5,6 +5,7 @@ import Forms from './pages/Forms'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SeeFrom from './pages/SeeFrom'
 
 function App() {
 
@@ -12,9 +13,10 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path='/Home' element={<Home />}/>
+        <Route path='/' element={<Home />}/>
         <Route path='/Login' element={<Login />}/>
         <Route path='/Forms' element={<Forms />}/>
+        <Route path='/SeeFrom' element={<SeeFrom />}/>
       </Routes>
   </Router>
   )

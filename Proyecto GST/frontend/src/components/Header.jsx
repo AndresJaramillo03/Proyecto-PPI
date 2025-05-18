@@ -10,7 +10,7 @@ export default function Header() {
       <div className="container d-flex justify-content-between align-items-center">
         <h1 className="titulo-gst m-0">GST</h1>
         <div className="botones">
-          <button onClick={() => navigate("/Home")}>Inicio</button>
+          <button onClick={() => navigate("/")}>Inicio</button>
           <button onClick={() => navigate("/Forms")}>Formulario</button>
           <button onClick={() => navigate("/Login")}>Registro</button>
         </div>
