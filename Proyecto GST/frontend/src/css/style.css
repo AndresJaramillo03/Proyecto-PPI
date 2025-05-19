@@ -58,3 +58,14 @@
   max-width: 100%;
   height: auto;
 }
+
+/* Justifica el texto de los párrafos */
+.hero-text p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.6;
+}
+

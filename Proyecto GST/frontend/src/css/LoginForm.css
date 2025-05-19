@@ -40,8 +40,30 @@
     height: 100%;
   }
   
+/*Cambios*/
 
 
+/* Nuevo botón de registrarse (mismo color que el de iniciar) */
+.login-register-button {
+  display: block;
+  background-color: #b2f1f4;    /* mismo fondo que .login-button */
+  color: #000;                  /* mismo texto que .login-button */
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 0.75rem;          /* separación respecto al botón iniciar */
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-register-button:hover {
+  background-color: #c0f4f7;    /* un ligero aclarado para el hover */
+}
 
 
 /*Esto es solo del formulario*/
@@ -83,3 +105,5 @@
     min-width: 180px;
     border-radius: 20px;
   }
+
+  
