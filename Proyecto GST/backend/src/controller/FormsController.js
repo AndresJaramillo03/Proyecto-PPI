@@ -1,4 +1,4 @@
-import { getAllFormularios, insertFormularios } from "../model/FormularioModel.js";
+import { getAllFormularios, insertFormularios, deleteFormulario } from "../model/FormularioModel.js";
 
 const getAllF = async (req,res) =>{
     try{
@@ -23,4 +23,15 @@ const insertForm = async (req, res) =>{
 
 }
 
-export {getAllF, insertForm};
+const deleteForm = async (req, res) =>{
+    try {
+        await deleteFormulario(req.params)
+        res.status(201).json({message: 'Formulario eliminado'})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+}
+
+
+
+export {getAllF, insertForm, deleteForm};

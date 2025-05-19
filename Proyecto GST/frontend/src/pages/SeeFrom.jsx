@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ObtenerFormulario } from "../services/FormsService";
 import fondoHome from "../assets/fondo-home.png";
+import Swal from 'sweetalert2';
+import axios from "axios";
 
 export default function SeeFrom() {
 
@@ -18,6 +20,30 @@ export default function SeeFrom() {
    } catch (error) {
       setError(error)
    }
+  }
+
+  const hanldeEliminar = (idPregunta) => {
+  
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+          axios.delete(`http://localhost:3000/${idPregunta}`)
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+      fetchFormularios();
+    });
+
   }
 
 
@@ -59,7 +85,7 @@ export default function SeeFrom() {
           <td>{f.Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral}</td>
           <td>
             <button className="btn btn-sm btn-primary me-2">Editar</button>
-            <button className="btn btn-sm btn-primary me-2">Eliminar</button>
+            <button onClick={() => hanldeEliminar(f.id_pregunta)} className="btn btn-sm btn-primary me-2">Eliminar</button>
           </td>
         </tr>
       ))}

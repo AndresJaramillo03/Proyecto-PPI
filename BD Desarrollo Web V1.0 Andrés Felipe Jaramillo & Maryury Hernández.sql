@@ -452,3 +452,29 @@ BEGIN
         @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
     );
 END;
+
+
+
+
+----------------------PROCEDIMIENTO PARA ELIMINAR EN PPI----------------------
+
+CREATE PROCEDURE sp_EliminarPregunta
+    @id_pregunta BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si el registro existe antes de intentar eliminarlo
+    IF EXISTS (SELECT 1 FROM preguntas WHERE id_pregunta = @id_pregunta)
+    BEGIN
+        DELETE FROM preguntas
+        WHERE id_pregunta = @id_pregunta;
+
+        PRINT 'Pregunta eliminada correctamente.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'La pregunta con el ID especificado no existe.';
+    END
+END
+GO

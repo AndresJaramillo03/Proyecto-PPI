@@ -39,4 +39,15 @@ const insertFormularios = async (formulario) => {
     .execute('sp_InsertarPregunta')
 }
 
-export {getAllFormularios, insertFormularios};
+const deleteFormulario = async () =>{
+
+    const {id_pregunta} = formulario
+
+    const con = await getConnection
+    await con .request()
+    .input('id_pregunta', sql.BigInt, id_pregunta )
+    .execute('sp_EliminarPregunta')
+
+}
+
+export {getAllFormularios, insertFormularios, deleteFormulario};
