@@ -1,8 +1,7 @@
-// src/pages/Register.jsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import fondoHome from "../assets/fondo-home.png";
-import "../css/registerForm.css"; // o reutiliza loginForm.css
+import "../css/registerForm.css";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -24,10 +23,6 @@ export default function Register() {
       return;
     }
     try {
-      // Lógica de llamado a tu API para crear usuario:
-      // const res = await fetch("/api/auth/register", { ... })
-      // const data = await res.json();
-      // si ok:
       navigate("/login");
     } catch (err) {
       setError("Error al registrarse");

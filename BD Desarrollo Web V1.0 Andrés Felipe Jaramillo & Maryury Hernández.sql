@@ -478,3 +478,13 @@ BEGIN
     END
 END
 GO
+
+
+----------------------PROCEDIMIENTO PARA ELIMINAR EN PPI V2----------------------
+
+create procedure sp_eliminar_formulario_v2
+@id_pregunta bigint
+as
+begin
+	delete preguntas where id_pregunta = @id_pregunta
+end

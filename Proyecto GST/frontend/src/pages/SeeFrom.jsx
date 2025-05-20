@@ -9,6 +9,9 @@ export default function SeeFrom() {
   const [formulario, setFormulario] = useState ([])
   const [error, setError] = useState ('')
 
+  const [formularioActual, setFormularioActual] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
+
   useEffect((f) => {
     fetchFormularios()
   },[])
@@ -22,29 +25,43 @@ export default function SeeFrom() {
    }
   }
 
-  const hanldeEliminar = (idPregunta) => {
-  
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-          axios.delete(`http://localhost:3000/${idPregunta}`)
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
+const hanldeEliminar = async (idPregunta) => {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¡No podrás revertir esto!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminarlo"
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`http://localhost:3000/${idPregunta}`);
+        
+        Swal.fire("Eliminado", "El formulario ha sido eliminado.", "success");
+        
+        fetchFormularios();
+      } catch (error) {
+        console.error("Error al eliminar:", error);
+        Swal.fire("Error", "No se pudo eliminar el formulario.", "error");
       }
-      fetchFormularios();
-    });
+    }
+  });
+};
 
+const actualizarFormulario = async () => {
+  try {
+    const { id_pregunta, ...datosActualizados } = formularioActual;
+    await axios.put(`http://localhost:3000/${id_pregunta}`, datosActualizados);
+    Swal.fire("Actualizado", "Formulario actualizado con éxito", "success");
+    setMostrarModal(false);
+    fetchFormularios();
+  } catch (error) {
+    console.error(error);
+    Swal.fire("Error", "Hubo un problema al actualizar", "error");
   }
+};
 
 
   return (
@@ -84,7 +101,7 @@ export default function SeeFrom() {
           <td>{f.Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal}</td>
           <td>{f.Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral}</td>
           <td>
-            <button className="btn btn-sm btn-primary me-2">Editar</button>
+            <button onClick={() => {setFormularioActual(f); setMostrarModal(true); }} className="btn btn-sm btn-primary me-2">Editar </button>
             <button onClick={() => hanldeEliminar(f.id_pregunta)} className="btn btn-sm btn-primary me-2">Eliminar</button>
           </td>
         </tr>
@@ -92,6 +109,41 @@ export default function SeeFrom() {
     </tbody>
   </table>
 </div>
+
+
+{mostrarModal && (
+  <div className="modal d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+    <div className="modal-dialog modal-lg">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Editar Formulario</h5>
+          <button onClick={() => setMostrarModal(false)} className="btn-close"></button>
+        </div>
+        <div className="modal-body">
+          {Object.keys(formularioActual).map((key) => (
+            key !== 'id_pregunta' && (
+              <div className="mb-2" key={key}>
+                <label className="form-label">{key}</label>
+                <input
+                  className="form-control"
+                  value={formularioActual[key]}
+                  onChange={(e) =>
+                    setFormularioActual({ ...formularioActual, [key]: e.target.value })
+                  }
+                />
+              </div>
+            )
+          ))}
+        </div>
+        <div className="modal-footer">
+          <button onClick={actualizarFormulario} className="btn btn-success">Guardar cambios</button>
+          <button onClick={() => setMostrarModal(false)} className="btn btn-secondary">Cancelar</button>
+        </div>
+      </div>
     </div>
+  </div>
+)}
+
+</div>
   )
 }

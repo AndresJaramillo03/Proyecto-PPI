@@ -16,7 +16,7 @@ export default function Forms() {
   }  
 
   const [formulario, setForm] = useState({
-    id_pregunta: 0,
+    id_pregunta: 21,
     Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar:'',
     Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral:'',
     Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar:'',
