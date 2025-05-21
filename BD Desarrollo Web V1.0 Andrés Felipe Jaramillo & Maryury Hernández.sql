@@ -1,6 +1,6 @@
-create database bd_gst
+create database bd_gst2
 go
-use bd_gst
+use bd_gst2
 go
 
 ----Andrés Felipe Jaramillo & Maryury Hernández Marín----
@@ -89,7 +89,7 @@ go
 
 
 create table preguntas(
-id_pregunta bigint primary key not null,
+id_pregunta bigint identity(1,1) primary key not null,
 Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar nvarchar(500) not null, --(Opciones: Muy bien / Bien / Neutral / Mal / Muy mal)
 Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral nvarchar(500) not null, --(Escala de 1 a 5)
 Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar nvarchar(500) not null,
@@ -329,7 +329,6 @@ INSERT INTO familia_empleado_cliente (documento_empleado_fk, parentesco, documen
 
 
 INSERT INTO preguntas (
-  id_pregunta,
   Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
   Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
   Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
@@ -341,26 +340,26 @@ INSERT INTO preguntas (
   Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal,
   Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
 ) VALUES
-(1, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'No especialmente.'),
-(2, 'Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo está bajo control.'),
-(3, 'Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'No', 'No', 'No', 'Sobrecarga de tareas.'),
-(4, 'Mal', '2', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Ambiente de trabajo tenso.'),
-(5, 'Muy mal', '1', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Presión constante.'),
-(6, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Sin inconvenientes.'),
-(7, 'Bien', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'Sí', 'No', 'Sí', 'Falta de comunicación.'),
-(8, 'Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo va bien.'),
-(9, 'Neutral', '3', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Mala relación con jefes.'),
-(10, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Nada relevante.'),
-(11, 'Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo fluye correctamente.'),
-(12, 'Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'No', 'No', 'No', 'Ruido constante en la oficina.'),
-(13, 'Mal', '2', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Ambiente hostil.'),
-(14, 'Muy mal', '1', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Falta de apoyo.'),
-(15, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Sin problemas por ahora.'),
-(16, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo en orden.'),
-(17, 'Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'Sí', 'No', 'Sí', 'Tareas repetitivas.'),
-(18, 'Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Ambiente positivo.'),
-(19, 'Neutral', '3', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Falta de liderazgo.'),
-(20, 'Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Me siento valorado.');
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'No especialmente.'),
+('Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo está bajo control.'),
+('Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'No', 'No', 'No', 'Sobrecarga de tareas.'),
+('Mal', '2', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Ambiente de trabajo tenso.'),
+('Muy mal', '1', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Presión constante.'),
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Sin inconvenientes.'),
+('Bien', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'Sí', 'No', 'Sí', 'Falta de comunicación.'),
+('Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo va bien.'),
+('Neutral', '3', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Mala relación con jefes.'),
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Nada relevante.'),
+('Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo fluye correctamente.'),
+('Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'No', 'No', 'No', 'Ruido constante en la oficina.'),
+('Mal', '2', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Ambiente hostil.'),
+('Muy mal', '1', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Falta de apoyo.'),
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Sin problemas por ahora.'),
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Todo en orden.'),
+('Neutral', '3', 'A veces', 'Sí', 'Sí', 'Sí', 'Sí', 'No', 'Sí', 'Tareas repetitivas.'),
+('Muy bien', '5', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Ambiente positivo.'),
+('Neutral', '3', 'No', 'Sí', 'No', 'Sí', 'No', 'No', 'No', 'Falta de liderazgo.'),
+('Bien', '4', 'Sí', 'No', 'Sí', 'No', 'Sí', 'Sí', 'Sí', 'Me siento valorado.');
 
 INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (1, 1, 3011);
 INSERT INTO formularios (id_formulario, id_pregunta_fk, id_usuario_fk) VALUES (2, 2, 3012);
@@ -488,3 +487,45 @@ as
 begin
 	delete preguntas where id_pregunta = @id_pregunta
 end
+
+
+--------------------------v3
+
+CREATE PROCEDURE sp_InsertarPregunta3
+    @Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar NVARCHAR(MAX),
+    @Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral NVARCHAR(MAX),
+    @Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar NVARCHAR(MAX),
+    @Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales NVARCHAR(MAX),
+    @Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo NVARCHAR(MAX),
+    @Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses NVARCHAR(MAX),
+    @Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres NVARCHAR(MAX),
+    @Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo NVARCHAR(MAX),
+    @Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal NVARCHAR(MAX),
+    @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO Preguntas (
+        Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
+        Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
+        Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
+        Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales,
+        Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo,
+        Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses,
+        Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres,
+        Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo,
+        Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal,
+        Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
+    )
+    VALUES (
+        @Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
+        @Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
+        @Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
+        @Sientes_que_no_tienes_suficiente_control_sobre_tus_tareas_o_decisiones_laborales,
+        @Te_resulta_difícil_cumplir_con_los_plazos_y_objetivos_de_trabajo,
+        @Sientes_que_tu_carga_de_trabajo_ha_aumentado_significativamente_en_los_últimos_meses,
+        @Te_sientes_apoyado_emocionalmente_por_tus_compañeros_o_lideres,
+        @Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo,
+        @Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal,
+        @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
+    );
+END
