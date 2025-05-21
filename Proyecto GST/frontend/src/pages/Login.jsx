@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import fondoHome from '../assets/fondo-home.png';
+import fondoHome from '../assets/fondo-home.jpg';
 import '../css/loginForm.css';
 
 export default function Login() {

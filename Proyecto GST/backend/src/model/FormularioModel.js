@@ -11,7 +11,7 @@ const getAllFormularios = async ()=>{
 
 const insertFormularios = async (formulario) => {
 
-    const {id_pregunta,
+    const {/*id_pregunta,*/
     Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar,
     Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral,
     Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar,
@@ -25,7 +25,7 @@ const insertFormularios = async (formulario) => {
 
     const con = await getConnection
     await con .request()
-    .input('id_pregunta', sql.BigInt, id_pregunta )
+    /*.input('id_pregunta', sql.BigInt, id_pregunta )*/
     .input('Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar', sql.NVarChar, Sientes_que_las_demandas_de_tu_trabajo_son_excesivas_o_difíciles_de_manejar)
     .input('Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral', sql.NVarChar, Te_resulta_difícil_desconectar_del_trabajo_fuera_del_horario_laboral)
     .input('Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar', sql.NVarChar, Experimentas_fatiga_o_agotamiento_incluso_después_de_descansar)
@@ -36,7 +36,7 @@ const insertFormularios = async (formulario) => {
     .input('Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo', sql.NVarChar, Sientes_que_puedes_hablar_abiertamente_sobre_como_te_sientes_en_el_trabajo)
     .input('Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal', sql.NVarChar, Te_sientes_satisfecho_con_el_equilibrio_entre_tu_vida_laboral_y_personal)
     .input('Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral', sql.NVarChar, Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral)
-    .execute('sp_InsertarPregunta')
+    .execute('sp_InsertarPregunta3')
 }
 
 const deleteFormulario = async ({ id_pregunta }) => {
