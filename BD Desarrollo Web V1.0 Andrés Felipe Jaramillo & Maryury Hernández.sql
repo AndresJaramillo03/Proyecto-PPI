@@ -63,6 +63,8 @@ foreign key (codigo_cargo_fk) references cargo_empleado_cliente(codigo_cargo)
 )
 go
 
+
+--------------------------------MALA---------------------
 create table usuario(
 id_usuario bigint primary key not null,
 documento_usuario_fk bigint not null,
@@ -73,6 +75,39 @@ foreign key (codigo_perfil_fk) references perfil(codigo_perfil),
 foreign key (documento_usuario_fk) references datos_empleado_cliente(documento_empleado)
 )
 go
+--------------------------------------------------------------
+DROP TABLE usuario;
+
+CREATE TABLE usuario_temp(
+id_usuario BIGINT IDENTITY(1,1) PRIMARY KEY,
+documento_usuario_fk bigint not null,
+codigo_perfil_fk int not null,
+correo nvarchar(500) not null,
+contraseña_usuario nvarchar(500) not null,
+foreign key (codigo_perfil_fk) references perfil(codigo_perfil),
+foreign key (documento_usuario_fk) references datos_empleado_cliente(documento_empleado)
+)
+
+
+EXEC sp_rename 'usuario', 'eliminar';
+
+
+EXEC sp_rename 'usuario_temp', 'usuario';
+
+begin tran
+
+rollback
+
+commit
+
+--No funciono
+alter table usuario drop column documento_usuario_fk
+
+--No funciono
+ALTER TABLE usuario
+DROP CONSTRAINT FK__usuario_t__docum__66603565
+
+
 
 create table familia_empleado_cliente(
 documento_empleado_fk bigint not null,
@@ -529,3 +564,48 @@ BEGIN
         @Hay_algo_que_actualmente_te_este_afectando_negativamente_en_tu_entorno_laboral
     );
 END
+
+------------------------------------LOGIN
+create PROCEDURE sp_crear_usuario
+    @contraseña_usuario NVARCHAR(500),
+    @correo NVARCHAR(500),
+    @nombre_completo NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        -- Validar que no exista un usuario con el mismo correo
+        IF EXISTS (SELECT 1 FROM Usuario WHERE correo = @correo)
+        BEGIN
+            RAISERROR('Ya existe un usuario con este correo.', 16, 1);
+            RETURN;
+        END
+
+        -- Insertar nuevo usuario con perfil 2
+        INSERT INTO Usuario (contraseña_usuario, correo, nombre_completo, codigo_perfil_fk)
+        VALUES (@contraseña_usuario, @correo, @nombre_completo, 3);
+
+        -- Retornar el ID del nuevo usuario
+        DECLARE @nuevo_usuario_id BIGINT = SCOPE_IDENTITY();
+        SELECT @nuevo_usuario_id AS usuario_id;
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR(@ErrorMessage, 16, 1);
+    END CATCH
+END
+
+
+
+
+alter table usuario
+add constraint UQ_usuario_correo unique (correo);
+
+alter table usuario add nombre_completo nvarchar(100) not null
+
+select*from usuario
+
+select*from preguntas
+
+select*from perfil

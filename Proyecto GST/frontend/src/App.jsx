@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SeeFrom from './pages/SeeFrom'
+import Register from './pages/Register'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/Login' element={<Login />}/>
         <Route path='/Forms' element={<Forms />}/>
         <Route path='/SeeFrom' element={<SeeFrom />}/>
+        <Route path='/Register' element={< Register/>}/>
       </Routes>
   </Router>
   )

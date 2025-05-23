@@ -2,13 +2,19 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import fondoHome from '../assets/fondo-home.jpg';
 import '../css/loginForm.css';
+import Home from './Home';
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/dashboard');
+  const handleHome = () => {
+    navigate('/');
   };
+
+  const handleRegister = () => {
+    navigate('/Register');
+  };
+  
 
   return (
     <div
@@ -50,20 +56,11 @@ export default function Login() {
         </div>
 
         {}
-        <button
-          className="login-button mb-3"
-          onClick={handleLogin}
-        >
-          INICIAR
-        </button>
+        <button className="login-button mb-3" onClick={handleHome}>INICIAR</button>
 
         {}
-        <Link
-          to="/register"
-          className="login-register-button"
-        >
-          REGISTRARSE
-        </Link>
+        
+        <button className="login-button mb-3" onClick={handleRegister}>REGISTRARSE</button>
       </div>
     </div>
   );

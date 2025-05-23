@@ -1,33 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import fondoHome from "../assets/fondo-home.png";
-import "../css/registerForm.css";
+import fondoHome from "../assets/fondo-home.jpg";
+import "../css/loginForm.css";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    password: "",
+    nombre_completo: "",
+    correo: "",
+    contrasena: "",
     confirm: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (form.password !== form.confirm) {
-      setError("Las contraseñas no coinciden");
-      return;
-    }
-    try {
-      navigate("/login");
-    } catch (err) {
-      setError("Error al registrarse");
-    }
   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+
+  if (form.contrasena !== form.confirm) {
+    setError("Las contraseñas no coinciden");
+    return;
+  }
+
+  try {
+    const response = await axios.post("http://localhost:3000/Register", {
+      nombre_completo: form.nombre_completo,
+      correo: form.correo,
+      contrasena: form.contrasena,
+    });
+
+    Swal.fire("¡Éxito!", "Usuario registrado correctamente", "success");
+    navigate("/login");
+  } catch (error) {
+    console.error(error);
+    setError(
+      error.response?.data?.message || "Error al registrarse. Intenta nuevamente."
+    );
+  }
+};
 
   return (
     <div
@@ -43,10 +59,7 @@ export default function Register() {
         justifyContent: "center",
       }}
     >
-      <form
-        onSubmit={handleSubmit}
-        className="login-card text-center"
-      >
+      <form onSubmit={handleSubmit} className="login-card text-center">
         <h2 className="mb-4">REGÍSTRATE</h2>
 
         {error && (
@@ -56,31 +69,31 @@ export default function Register() {
         )}
 
         <input
-          name="nombre"
+          name="nombre_completo"
           type="text"
           className="login-input mb-3"
           placeholder="Nombre completo"
-          value={form.nombre}
+          value={form.nombre_completo}
           onChange={handleChange}
           required
         />
 
         <input
-          name="email"
+          name="correo"
           type="email"
           className="login-input mb-3"
           placeholder="Correo electrónico"
-          value={form.email}
+          value={form.correo}
           onChange={handleChange}
           required
         />
 
         <input
-          name="password"
+          name="contrasena"
           type="password"
           className="login-input mb-3"
           placeholder="Contraseña"
-          value={form.password}
+          value={form.contrasena}
           onChange={handleChange}
           required
         />
@@ -95,10 +108,7 @@ export default function Register() {
           required
         />
 
-        <button
-          type="submit"
-          className="login-button mb-3"
-        >
+        <button type="submit" className="login-button mb-3">
           REGISTRARSE
         </button>
 
