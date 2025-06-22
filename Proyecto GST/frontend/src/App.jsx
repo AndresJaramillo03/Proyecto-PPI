@@ -1,12 +1,13 @@
-import {BrowserRouter as Router,Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Forms from './pages/Forms'
-import Home from './pages/Home'
-import Login from './pages/Login'
+import {BrowserRouter as Router,Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Forms from './pages/Forms';
+import Home from './pages/Home';
+import Login from './pages/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SeeFrom from './pages/SeeFrom'
-import Register from './pages/Register'
+import SeeFrom from './pages/SeeFrom';
+import Register from './pages/Register';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/Login' element={<Login />}/>
-        <Route path='/Forms' element={<Forms />}/>
+        <Route path="/Forms" element={<PrivateRoute> <Forms /> </PrivateRoute>}/>
         <Route path='/SeeFrom' element={<SeeFrom />}/>
         <Route path='/Register' element={< Register/>}/>
       </Routes>

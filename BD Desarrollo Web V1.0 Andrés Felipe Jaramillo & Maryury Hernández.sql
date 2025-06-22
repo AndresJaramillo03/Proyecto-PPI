@@ -609,3 +609,11 @@ select*from usuario
 select*from preguntas
 
 select*from perfil
+
+SELECT nombre_completo, contraseña_usuario FROM usuario;
+
+
+--Usuario para validar
+--Carlos
+--Carlos@correo.com
+--123456

@@ -12,7 +12,7 @@ export default function Header() {
         <div className="botones">
           <button onClick={() => navigate("/")}>Inicio</button>
           <button onClick={() => navigate("/Forms")}>Formulario</button>
-          <button onClick={() => navigate("/Login")}>Registro</button>
+          {/*<button onClick={() => navigate("/Login")}>Registro</button>*/}
         </div>
       </div>
     </header>

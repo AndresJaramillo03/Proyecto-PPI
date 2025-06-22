@@ -42,6 +42,11 @@ export default function Forms() {
     .catch(error => console.log(error))
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('usuario');
+    navigate('/Login');
+  };
+
   return (
     <div className="form-page-wrapper" style={{ backgroundImage: `url(${fondoHome})` }}>
       <div className="form-card">
@@ -189,6 +194,7 @@ export default function Forms() {
             <Button variant="outline-secondary" type="button" onClick={verSeeform}>Ver último formulario</Button>
           </div>
         </Form>
+        <button className="btn btn-danger mt-4" onClick={handleLogout}> Cerrar Sesión </button>
       </div>
     </div>
   );
